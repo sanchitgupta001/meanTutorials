@@ -21,6 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json()); // For parsing JSON
 app.use(morgan('dev')); // For logging request to the console/terminal
 
+var api = require('./app/routes/api')(app, express);
+app.use('/api', api);
+
 // Applicable for any route
 app.get('*', function(req, res){
 	res.sendFile(__dirname + '/public/views/index.html');
